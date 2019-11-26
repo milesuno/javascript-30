@@ -32,7 +32,7 @@ let screenKey = document.querySelectorAll('.key');
 
 //loop through all divs and on 'mousedown' play audio with ID that matches ASCII code of div ID.
 screenKey.forEach(key => key.addEventListener('mousedown', (event) =>{
-    let target = event.path[1].id; //Path to div id being clicked
+    let target = event.target.id; //Path to div id being clicked
     let key = document.getElementById(target);
     let audio = document.getElementById(target.charCodeAt(0) - 32); //ASCII conversion is 32 above char code
     
@@ -45,7 +45,7 @@ screenKey.forEach(key => key.addEventListener('mousedown', (event) =>{
 
 //loop through all divs remove transform on 'mouseup'.
 screenKey.forEach(key => key.addEventListener('mouseup', (event) => {
-    let target = event.path[1].id; 
+    let target = event.target.id; 
     let key = document.getElementById(target);
     
     if(!key) return;
