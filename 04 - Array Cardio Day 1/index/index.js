@@ -118,12 +118,12 @@ const sortedYearsLived = inventors.sort(
 console.table(sortedYearsLived);
 
 // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
-// https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+// https    en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
-// const wikiLinks = document.querySelector('.mw-category');
-// console.log('wikiLniks', wikiLinks)
-// const links = [...wikiLinks.querySelectorAll('a')];// Converts NodeList to Array
-// const filteredLinks = links.map(link => link.innerText).filter(name => name.includes("de"));
+const wikiLinks = document.querySelector('.mw-category');
+console.log('wikiLniks', wikiLinks)
+const links = [...wikiLinks.querySelectorAll('a')];// Converts NodeList to Array
+const filteredLinks = links.map(link => link.innerText).filter(name => name.includes("de"));
 
 // 7. sort Exercise
 // Sort the people alphabetically by last name
