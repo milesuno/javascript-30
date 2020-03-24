@@ -44,6 +44,7 @@
 		<ul id="bands"></ul>
 
 		<script>
+			const bandsList = document.querySelector("#bands");
 			const bands = [
 				"The Plot in You",
 				"The Devil Wears Prada",
@@ -83,6 +84,12 @@
 				return str.replace(/^(the |an |oh )/gi, "");
 			}
 
+			sortedBands.forEach(band => {
+				const li = document.createElement("li");
+				li.innerHTML = band;
+
+				bandsList.appendChild(li);
+			})
 			console.log("unsorted", bands);
 			console.log("sorted", sortedBands);
 		</script>
