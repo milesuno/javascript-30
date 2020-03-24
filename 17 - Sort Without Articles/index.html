@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Sort Without Articles</title>
+	</head>
+	<body>
+		<style>
+			body {
+				margin: 0;
+				font-family: sans-serif;
+				background: url("https://source.unsplash.com/nDqA4d5NL0k/2000x2000");
+				background-size: cover;
+				display: flex;
+				align-items: center;
+				min-height: 100vh;
+			}
+
+			#bands {
+				list-style: inside square;
+				font-size: 20px;
+				background: white;
+				width: 500px;
+				margin: auto;
+				padding: 0;
+				box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.05);
+			}
+
+			#bands li {
+				border-bottom: 1px solid #efefef;
+				padding: 20px;
+			}
+
+			#bands li:last-child {
+				border-bottom: 0;
+			}
+
+			a {
+				color: #ffc600;
+				text-decoration: none;
+			}
+		</style>
+
+		<ul id="bands"></ul>
+
+		<script>
+			const bands = [
+				"The Plot in You",
+				"The Devil Wears Prada",
+				"Pierce the Veil",
+				"Norma Jean",
+				"The Bled",
+				"Say Anything",
+				"The Midway State",
+				"We Came as Romans",
+				"Counterparts",
+				"Oh, Sleeper",
+				"A Skylit Drive",
+				"Anywhere But Here",
+				"An Old Dog"
+      ];
+      
+      const bands2 = [...bands]
+
+			let sortedBands = bands2.sort((a, b) => {
+				if (removeArticle(a) > removeArticle(b)) {
+          return -1;
+        }
+
+        if (removeArticle(a) < removeArticle(b)) {
+          return 1;
+        } 
+			});
+
+			function removeArticle(str) {
+        //INCORRECT LOGIC:
+				//Check if str starts with ...
+        //If str starts with ... start comparison after the article index
+        
+        //CORRECT LOGIC:
+        //Create a function to remove article IN comparison process - if statement
+        //Return unmodified data in function block 
+				return str.replace(/^(the |an |oh )/gi, "");
+			}
+
+			console.log("unsorted", bands);
+			console.log("sorted", sortedBands);
+		</script>
+	</body>
+</html>
