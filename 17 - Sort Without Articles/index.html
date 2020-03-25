@@ -64,11 +64,11 @@
       const bands2 = [...bands]
 
 			let sortedBands = bands2.sort((a, b) => {
-				if (removeArticle(a) > removeArticle(b)) {
+				if (removeArticle(a) < removeArticle(b)) {
           return -1;
         }
 
-        if (removeArticle(a) < removeArticle(b)) {
+        if (removeArticle(a) > removeArticle(b)) {
           return 1;
         } 
 			});
@@ -81,7 +81,7 @@
         //CORRECT LOGIC:
         //Create a function to remove article IN comparison process - if statement
         //Return unmodified data in function block 
-				return str.replace(/^(the |an |oh )/gi, "");
+				return str.replace(/^(the |an |a )/gi, "");
 			}
 
 			sortedBands.forEach(band => {
