@@ -46,47 +46,49 @@
 			const text = document.querySelector("[name='text']");
 			const speakButton = document.querySelector("#speak");
 			const stopButton = document.querySelector("#stop");
-      
+
 			msg.text = text.value;
-      
-      speechSynthesis.addEventListener("voiceschanged", getVoices);
+
+			speechSynthesis.addEventListener("voiceschanged", getVoices);
 			speakButton.addEventListener("click", playText);
-      stopButton.addEventListener("click", stopText);
-      voicesDropdown.addEventListener("change", updateVoice);
-      
-      options.forEach(option => {
-        option.addEventListener("change", setOptions);
-      })
+			stopButton.addEventListener("click", stopText);
+			voicesDropdown.addEventListener("change", updateVoice);
 
-      function setOptions () {
-        msg[this.name] = this.value;
-        toggle();
-      };
-      
-      async function getVoices(){
-        voices = await window.speechSynthesis.getVoices();
-        populateList();
-      };
+			options.forEach(option => {
+				option.addEventListener("change", setOptions);
+			});
 
-      function updateVoice(e){
-        msg.voice = voices.find(voice => voice.name === this.value);
-        toggle();
-      };
+			function setOptions() {
+				msg[this.name] = this.value;
+				toggle();
+			}
 
-      function toggle () {
-        console.log(msg);
-        window.speechSynthesis.cancel();
-        window.speechSynthesis.speak(msg);
-      };
+			async function getVoices() {
+				voices = await window.speechSynthesis.getVoices();
+				populateList();
+			}
 
-      function populateList(){
-        voicesDropdown.innerHTML = voices.map(voice => {
-          return `<option value="${voice.name}">${voice.name}</option>`;
-        }).join("")
-      };
+			function updateVoice(e) {
+				msg.voice = voices.find(voice => voice.name === this.value);
+				toggle();
+			}
+
+			function toggle() {
+				console.log(msg);
+				window.speechSynthesis.cancel();
+				window.speechSynthesis.speak(msg);
+			}
+
+			function populateList() {
+				voicesDropdown.innerHTML = voices
+					.map(voice => {
+						return `<option value="${voice.name}">${voice.name}</option>`;
+					})
+					.join("");
+			}
 
 			function playText() {
-        window.speechSynthesis.speak(msg);
+				window.speechSynthesis.speak(msg);
 			}
 
 			function stopText() {
