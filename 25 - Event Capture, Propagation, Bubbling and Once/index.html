@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Understanding JavaScript's Capture</title>
+	</head>
+	<body class="bod">
+		<div class="one">
+			<div class="two">
+				<div class="three"></div>
+			</div>
+		</div>
+
+		<style>
+			html {
+				box-sizing: border-box;
+			}
+
+			*,
+			*:before,
+			*:after {
+				box-sizing: inherit;
+			}
+
+			div {
+				width: 100%;
+				padding: 100px;
+			}
+
+			.one {
+				background: thistle;
+			}
+
+			.two {
+				background: mistyrose;
+			}
+
+			.three {
+				background: coral;
+			}
+		</style>
+
+		<button></button>
+		<script>
+			//KEYWORDS:
+			//* Event Capture: Locating source parent to child.
+			//* Propagation: To start - Event propagtion is the order in which events are called.
+			//* Bubbling: Triggering all parent element to top level.
+			//* Once: Allows code to only be trigger once
+
+			//On Click trigger order.
+			//1. Event Capturing - JS works out what element has been clicked on by capturing. Browser tracks element location from parents down to children. The event are not being triggered, just tracked.
+			//2. Once event source is found then  Event Bubbling begins.
+			//3. Even parent element of the source of the event have the event triggered on them also as they wrap the source
+
+			const divs = document.querySelectorAll("div");
+			console.log(divs);
+
+			divs.forEach(div => {
+				div.addEventListener(
+					"click",
+					e => {
+						e.stopPropagation(); //stops JS from triggering code during either capture (from child to parents) or bubbling stage (from parent to child).
+						console.log(div.classList.value);
+					},
+					//"Options" object can be added as 3rd argument to .addEventListener(EVENT, FUNCTION, OPTIONS) to effect the capturing and bubbling of the events.
+					{
+						once: true, // triggers code only once - used for checkout buttons to avoid multiple payments.
+						capture: true //triggers code during capture stage (from parent to child)
+					}
+				);
+			});
+		</script>
+	</body>
+</html>
